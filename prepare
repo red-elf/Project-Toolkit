@@ -10,12 +10,6 @@ if [ -z "$SUBMODULES_HOME" ]; then
   exit 1
 fi
 
-if [ "$HERE" == "$SUBMODULES_HOME" ]; then
-
-    echo "ERROR: Forbidden inoking from '$HERE'"
-    exit 1
-fi
-
 SCRIPT_PREPARE="$SUBMODULES_HOME/Project/prepare.sh"
 SCRIPT_PATHS="$SUBMODULES_HOME/Software-Toolkit/Utils/Sys/paths.sh"
 
