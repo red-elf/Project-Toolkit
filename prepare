@@ -9,7 +9,7 @@ if [ -z "$SUBMODULES_HOME" ]; then
 fi
 
 SCRIPT_PREPARE="$SUBMODULES_HOME/Project/prepare.sh"
-SCRIPT_PATHS="$SUBMODULES_HOME/Software-Toolkit/Sys/paths.sh"
+SCRIPT_PATHS="$SUBMODULES_HOME/Software-Toolkit/Utils/Sys/paths.sh"
 
 if ! test  -e "$SCRIPT_PREPARE"; then
 
