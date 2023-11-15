@@ -1,0 +1,56 @@
+#!/bin/bash
+
+HERE=$(pwd)
+DIR_TEST_RUN_CONFIGURATIONS="$HERE/Run/Test"
+
+if ! test -e "$DIR_TEST_RUN_CONFIGURATIONS"; then
+
+    echo "WARNING: No test run configurations directory found '$DIR_TEST_RUN_CONFIGURATIONS'"
+    exit 0
+fi
+
+RUN_TEST() {
+
+    if [ -z "$1" ]; then
+
+        echo "ERROR: Test parameter is mandatory"
+        exit 1
+    fi
+
+    SCRIPT_TEST="$1"
+
+    if ! test -e "$SCRIPT_TEST"; then
+
+        echo "ERROR: Script not found at $SCRIPT_TEST"
+        exit 1
+    fi
+
+    sh "$SCRIPT_TEST"
+}
+
+if cd "$DIR_TEST_RUN_CONFIGURATIONS"; then
+
+    for SCRIPT_TEST in *; do 
+        
+        if [ -f "$SCRIPT_TEST" ]; then 
+        
+            RUN_TEST "$SCRIPT_TEST"
+        fi 
+
+    done
+
+    if cd "$HERE"; then
+
+        echo "Completed"
+
+    else
+
+        echo "ERROR: Could not go back to '$HERE'"
+        exit 1
+    fi
+
+else
+
+    echo "ERROR: Could not get to '$DIR_TEST_RUN_CONFIGURATIONS'"
+    exit 1
+fi
