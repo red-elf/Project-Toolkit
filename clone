@@ -48,13 +48,8 @@ if git clone "$REPO" "$DESTINATION"; then
 
                 if sh "$SCRIPT_INSTALL" && cd "$SUBMODULES_HOME"; then
 
-                    echo "Project Toolkit is ready at: $(pwd)"
+                    echo "Project is ready at: $(pwd)"
                 fi
-
-            else
-
-                echo "ERROR: Script not found '$SCRIPT_INSTALL'"
-                exit 1
             fi
 
         else
