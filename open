@@ -2,6 +2,21 @@
 
 HERE=$(pwd)
 
+SCRIPT_PRE_PREPARE="$HERE/pre_prepare"
+
+if test -e "$SCRIPT_PRE_PREPARE"; then
+
+    if sh "$SCRIPT_PRE_PREPARE"; then
+
+        echo "Pre-preapre completed"
+
+    else
+
+        echo "ERROR: Pre-preapre failed"
+        exit 1
+    fi
+fi
+
 if [ -z "$SUBMODULES_HOME" ]; then
 
   echo "ERROR: The SUBMODULES_HOME is not defined !!!"
