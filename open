@@ -48,7 +48,7 @@ if ! test -e "$ICONIFY"; then
     exit 1
 fi
 
-sh "$ICONIFY" && sh "$SCRIPT"
+sh "$ICONIFY"
 
 if test -e "$SCRIPT_POST_PREPARE"; then
 
@@ -62,3 +62,5 @@ if test -e "$SCRIPT_POST_PREPARE"; then
         exit 1
     fi
 fi
+
+sh "$SCRIPT"
