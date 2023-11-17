@@ -17,7 +17,7 @@ if cd "$TARGET" && ! git status; then
 
   git clone "$REPO_TOOLKIT" . &&
     git submodule init && git submodule update && \
-    echo "Project Roolkit has been installed:" && \
+    echo "Project Toolkit has been installed:" && \
     cd "$SUBMODULES_HOME" && ls -lF
     
 else
