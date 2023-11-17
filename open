@@ -2,7 +2,7 @@
 
 # TODO: Clone script to download the opening files and scripts that are not the part of Project Toolkit
 
-echo "Opening the HelixTrack Core"
+echo "Opening the Project Toolkit"
 
 HERE=$(pwd)
 
