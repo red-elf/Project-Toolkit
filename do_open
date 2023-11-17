@@ -14,11 +14,7 @@ SCRIPT_POST_PREPARE="$HERE/post_prepare"
 
 if test -e "$SCRIPT_PRE_PREPARE"; then
 
-    if sh "$SCRIPT_PRE_PREPARE"; then
-
-        echo "Pre-preapre completed"
-
-    else
+    if ! sh "$SCRIPT_PRE_PREPARE"; then
 
         echo "ERROR: Pre-preapre failed"
         exit 1
@@ -30,8 +26,6 @@ if [ -z "$SUBMODULES_HOME" ]; then
   echo "ERROR: The SUBMODULES_HOME is not defined !!!"
   exit 1
 fi
-
-
 
 SCRIPT="$HERE/Run/Project/open.sh"
 ICONIFY="$HERE/Run/Iconic/iconify.sh"
@@ -52,11 +46,7 @@ sh "$ICONIFY"
 
 if test -e "$SCRIPT_POST_PREPARE"; then
 
-    if sh "$SCRIPT_POST_PREPARE"; then
-
-        echo "Post-preapre completed"
-
-    else
+    if ! sh "$SCRIPT_POST_PREPARE"; then
 
         echo "ERROR: Post-preapre failed"
         exit 1
