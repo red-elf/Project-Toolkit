@@ -5,7 +5,7 @@ HERE=$(pwd)
 if git status >/dev/null 2>&1; then
 
     echo "ERROR: Not empty directory '$HERE'"
-    echo "Please clone into the empty direcotry!"
+    echo "Please clone into the empty firectory!"
     exit 1
 fi
 
