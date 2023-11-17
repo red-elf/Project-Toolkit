@@ -3,6 +3,7 @@
 HERE=$(pwd)
 
 SCRIPT_PRE_PREPARE="$HERE/pre_prepare"
+SCRIPT_POST_PREPARE="$HERE/post_prepare"
 
 if test -e "$SCRIPT_PRE_PREPARE"; then
 
@@ -57,3 +58,16 @@ if test -e "$ASCII_ART"; then
 fi
 
 sh "$ICONIFY" && sh "$SCRIPT"
+
+if test -e "$SCRIPT_POST_PREPARE"; then
+
+    if sh "$SCRIPT_POST_PREPARE"; then
+
+        echo "Post-preapre completed"
+
+    else
+
+        echo "ERROR: Post-preapre failed"
+        exit 1
+    fi
+fi
