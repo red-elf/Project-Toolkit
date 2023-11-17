@@ -2,16 +2,6 @@
 
 HERE=$(pwd)
 
-# shellcheck disable=SC2012
-FILES_COUNT=$(ls -1 | wc -l)
-
-if [ ! "$FILES_COUNT" == 0 ]; then
-
-    echo "ERROR: Not empty directory '$HERE'"
-    echo "Please clone into the empty firectory!"
-    exit 1
-fi
-
 if [ -z "$1" ]; then
 
     echo "ERROR: Repository parameter is mandatory"
