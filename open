@@ -10,11 +10,7 @@ SCRIPT_POST_OPEN="$HERE/post_open"
 
 if test -e "$SCRIPT_PRE_OPEN"; then
 
-    if sh "$SCRIPT_PRE_OPEN"; then
-
-        echo "Pre-open completed"
-
-    else
+    if ! sh "$SCRIPT_PRE_OPEN"; then
 
         echo "ERROR: Pre-open failed"
         exit 1
@@ -24,15 +20,12 @@ fi
 if test -e "$SCRIPT_DO_OPEN"; then
 
   sh "$SCRIPT_DO_OPEN"
+
 fi
 
 if test -e "$SCRIPT_POST_OPEN"; then
 
-    if sh "$SCRIPT_POST_OPEN"; then
-
-        echo "Post-open completed"
-
-    else
+    if ! sh "$SCRIPT_POST_OPEN"; then
 
         echo "ERROR: Post-open failed"
         exit 1
