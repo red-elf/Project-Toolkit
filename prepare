@@ -9,16 +9,6 @@ if [ -z "$SUBMODULES_HOME" ]; then
 fi
 
 SCRIPT_PREPARE="$SUBMODULES_HOME/Project/prepare.sh"
-SCRIPT_INSTALL_FONTS="$HERE/Run/Install/fonts.sh"
-
-if test -e "$SCRIPT_INSTALL_FONTS"; then
-
-  if ! sh "$SCRIPT_INSTALL_FONTS"; then
-  
-    echo "ERROR: Failed to install fonts"
-    exit 1
-  fi
-fi
 
 if ! test  -e "$SCRIPT_PREPARE"; then
 
