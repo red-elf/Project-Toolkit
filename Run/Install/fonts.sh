@@ -1,5 +1,7 @@
 #!/bin/bash
 
+HERE=$(pwd)
+
 if [ -z "$SUBMODULES_HOME" ]; then
 
   echo "ERROR: SUBMODULES_HOME not available"
@@ -15,3 +17,10 @@ if ! test -e "$SCRIPT_INSTALL_FONTS"; then
 fi
 
 sh "$SCRIPT_INSTALL_FONTS"
+
+DIR_SYS_FONTS=/usr/local/share/fonts
+
+if test -e "$DIR_SYS_FONTS"; then
+
+  sh "$SCRIPT_INSTALL_FONTS" "$HERE/Assets/Fonts" "$DIR_SYS_FONTS"
+fi
