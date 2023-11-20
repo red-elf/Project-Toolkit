@@ -16,7 +16,7 @@ CMD="open"
 
 LAUNCHER="$HERE/Assets/Launcher.svg"
 
-if test -e "$LAUNCHER"; then
+if ! test -e "$LAUNCHER"; then
 
     LAUNCHER="$HERE/Assets/Launcher.png"
 fi
