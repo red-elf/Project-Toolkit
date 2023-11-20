@@ -14,8 +14,12 @@ CMD_PATH="$HERE"
 # shellcheck disable=SC2034
 CMD="open"
 
-# shellcheck disable=SC2034
 LAUNCHER="$HERE/Assets/Launcher.svg"
+
+if test -e "$LAUNCHER"; then
+
+    LAUNCHER="$HERE/Assets/Launcher.png"
+fi
 
 SCRIPT_VERSION="$HERE/Version/version.sh"
 
