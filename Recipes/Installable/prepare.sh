@@ -12,7 +12,7 @@ if test -e "$GENERATED"; then
   fi
 fi
 
-# TODO: Migration to Go Lang:
+# TODO: Generate the Go code:
 #
 # echo "Generating the code"
 #
