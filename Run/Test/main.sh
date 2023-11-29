@@ -8,6 +8,6 @@ if [ -z "$SUBMODULES_HOME" ]; then
   exit 1
 fi
 
-RECIPES="$HERE/../../Recipes"
+RECIPES="$HERE/Recipes"
 
 sh "$SUBMODULES_HOME/Testable/test.sh" "$RECIPES" "$HERE"
