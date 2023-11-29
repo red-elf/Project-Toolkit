@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HERE="$(dirname -- "$0")"
+HERE=$(pwd)
 DIR_HOME="$(readlink --canonicalize ~)"
 
 if [ -z "$SHARES_SERVER" ]; then
@@ -9,7 +9,7 @@ if [ -z "$SHARES_SERVER" ]; then
     exit 1
 fi
 
-SCRIPT_DEFAULTS="$HERE/defaults.sh"
+SCRIPT_DEFAULTS="$HERE/Recipes/VSCode/defaults.sh"
 
 if ! test -e "$SCRIPT_DEFAULTS"; then
 
