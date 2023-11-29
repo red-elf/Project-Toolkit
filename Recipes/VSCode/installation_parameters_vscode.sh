@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HERE=$(pwd)
+HERE="$(dirname -- "$0")"
 DIR_HOME="$(readlink --canonicalize ~)"
 
 if [ -z "$SHARES_SERVER" ]; then
