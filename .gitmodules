@@ -22,3 +22,6 @@
 [submodule "Project"]
 	path = Project
 	url = git@github.com:red-elf/Project.git
+[submodule "Docker-Definitions"]
+	path = Docker-Definitions
+	url = git@github.com:Server-Factory/Docker-Definitions.git
