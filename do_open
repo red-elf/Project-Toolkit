@@ -29,6 +29,7 @@ fi
 
 SCRIPT="$HERE/Run/Project/open.sh"
 ICONIFY="$HERE/Run/Iconic/iconify.sh"
+DO_BRANDING="$HERE/Run/Iconic/do_branding.sh"
 
 if ! test -e "$SCRIPT"; then
 
@@ -42,7 +43,16 @@ if ! test -e "$ICONIFY"; then
     exit 1
 fi
 
-sh "$ICONIFY"
+if ! test -e "$DO_BRANDING"; then
+
+    echo "ERROR: Script not found at '$DO_BRANDING'"
+    exit 1
+fi
+
+# TODO: Obtain the path
+LAUNCHER_ASSET=""
+
+sh "$ICONIFY" && sh "$DO_BRANDING" "$LAUNCHER_ASSET"
 
 if test -e "$SCRIPT_POST_PREPARE"; then
 
