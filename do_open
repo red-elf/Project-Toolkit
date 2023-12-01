@@ -65,7 +65,7 @@ if [ -n "$BRAND_IDE" ]; then
 
 else
 
-    echo "We are noy going to brand the IDE"
+    echo "We are not going to brand the IDE"
 fi
 
 if test -e "$SCRIPT_POST_PREPARE"; then
