@@ -56,7 +56,17 @@ if ! test -e "$LAUNCHER_ASSET"; then
     LAUNCHER_ASSET="$HERE/Assets/Launcher.png"
 fi
 
-sh "$ICONIFY" && sh "$DO_BRANDING" "$LAUNCHER_ASSET"
+sh "$ICONIFY"
+
+if [ -n "$BRAND_IDE" ]; then
+
+    echo "We are going to brand the IDE" && \
+        sh "$DO_BRANDING" "$LAUNCHER_ASSET"
+
+else
+
+    echo "We are noy going to brand the IDE"
+fi
 
 if test -e "$SCRIPT_POST_PREPARE"; then
 
