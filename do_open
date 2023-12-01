@@ -49,12 +49,7 @@ if ! test -e "$DO_BRANDING"; then
     exit 1
 fi
 
-LAUNCHER_ASSET="$HERE/Assets/Launcher.svg"
-
-if ! test -e "$LAUNCHER_ASSET"; then
-
-    LAUNCHER_ASSET="$HERE/Assets/Launcher.png"
-fi
+LAUNCHER_ASSET="$HERE/Assets/Launcher.png"
 
 sh "$ICONIFY"
 
