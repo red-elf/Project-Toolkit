@@ -9,4 +9,7 @@ fi
 HERE="$(pwd)"
 DIR_TOOLKIT="$SUBMODULES_HOME/Software-Toolkit"
 
-sh "$DIR_TOOLKIT/Utils/VSCode/install.sh" "$HERE/Recipes/VSCode/installation_parameters_vscode.sh"
+# shellcheck disable=SC1091
+. "$HERE/Recipes/VSCode/installation_parameters_vscode.sh"
+
+sh "$DIR_TOOLKIT/Utils/VSCode/install.sh"
