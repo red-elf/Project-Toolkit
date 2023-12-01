@@ -49,8 +49,12 @@ if ! test -e "$DO_BRANDING"; then
     exit 1
 fi
 
-# TODO: Obtain the path
-LAUNCHER_ASSET=""
+LAUNCHER_ASSET="$HERE/Assets/Launcher.svg"
+
+if ! test -e "$LAUNCHER_ASSET"; then
+
+    LAUNCHER_ASSET="$HERE/Assets/Launcher.png"
+fi
 
 sh "$ICONIFY" && sh "$DO_BRANDING" "$LAUNCHER_ASSET"
 
