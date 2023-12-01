@@ -17,7 +17,8 @@ fi
 
 if test -e "$SCRIPT_DO_OPEN"; then
 
-  sh "$SCRIPT_DO_OPEN"
+    # shellcheck disable=SC1090
+    . "$SCRIPT_DO_OPEN"
 
 fi
 
