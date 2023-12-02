@@ -9,46 +9,17 @@ if [ -z "$SUBMODULES_HOME" ]; then
 fi
 
 RECIPES="$HERE/Recipes"
-SCRIPT_VERSION="$HERE/Version/version.sh"
+SCRIPT_GET_SONAR_NAME="get_sonar_project_name.sh"
+SCRIPT_GET_SONAR_NAME_FULL="$SUBMODULES_HOME/Software-Toolkit/Utils/SonarQube/$SCRIPT_GET_SONAR_NAME"
 
-if ! test -e "$SCRIPT_VERSION"; then
+if ! test -e "$SCRIPT_GET_SONAR_NAME_FULL"; then
 
-    echo "ERROR: Version file not found '$SCRIPT_VERSION'"
+    echo "ERROR: Script not found '$SCRIPT_GET_SONAR_NAME_FULL'"
     exit 1
 fi
 
 # shellcheck disable=SC1090
-. "$SCRIPT_VERSION"
-
-if [ -z "$VERSIONABLE_VERSION_PRIMARY" ]; then
-
-    echo "ERROR: 'VERSIONABLE_VERSION_PRIMARY' variable not set"
-    exit 1
-fi
-
-if [ -z "$VERSIONABLE_VERSION_SECONDARY" ]; then
-
-    echo "ERROR: 'VERSIONABLE_VERSION_SECONDARY' variable not set"
-    exit 1
-fi
-
-if [ -z "$VERSIONABLE_VERSION_PATCH" ]; then
-
-    echo "ERROR: 'VERSIONABLE_VERSION_PATCH' variable not set"
-    exit 1
-fi
-
-if [ -z "$VERSIONABLE_NAME_NO_SPACE" ]; then
-
-    echo "ERROR: 'VERSIONABLE_NAME_NO_SPACE' variable not set"
-    exit 1
-fi
-
-SONARQUBE_PROJECT="${VERSIONABLE_NAME_NO_SPACE}_$VERSIONABLE_VERSION_PRIMARY.$VERSIONABLE_VERSION_SECONDARY.$VERSIONABLE_VERSION_PATCH"
-
-export SONARQUBE_PROJECT
+. "$SCRIPT_GET_SONAR_NAME_FULL"
 
 # shellcheck disable=SC1091
 . "$SUBMODULES_HOME/Testable/test.sh" "$RECIPES" "$HERE"
-
-unset SONARQUBE_PROJECT
