@@ -52,3 +52,5 @@ DOWNLOAD_URL_EXTENSIONS="http://$SHARES_SERVER:8081/extensions.$DATA_VERSION.tar
 # shellcheck disable=SC2034
 DOWNLOAD_URL_USER_DATA="http://$SHARES_SERVER:8081/user-data.$DATA_VERSION.tar.gz"
 
+# shellcheck disable=SC2034
+DOWNLOAD_URL_DATA_VERSION="http://$SHARES_SERVER:8081/data_version.txt"
