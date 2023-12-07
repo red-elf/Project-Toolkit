@@ -26,4 +26,16 @@ else
     exit 1
 fi
 
-sh "$SCRIPT_FORMAT_JSON" "$SOURCE"
+if file "$SOURCE" | grep "directory"; then
+
+    for FILE_JSON in "$SOURCE"/*.json; do
+
+        sh "$SCRIPT_FORMAT_JSON" "$FILE_JSON"
+
+    done
+
+else
+
+    echo "ERROR: The source JSON path is not directory '$SOURCE'"
+    exit 1
+fi
