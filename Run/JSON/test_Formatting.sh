@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Incorporate this as the part of integration tests.
+
 if [ -z "$SUBMODULES_HOME" ]; then
 
   echo "ERROR: SUBMODULES_HOME not available"
