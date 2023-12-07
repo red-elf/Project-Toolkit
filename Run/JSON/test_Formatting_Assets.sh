@@ -12,6 +12,11 @@ if ! test -e "$ASSETS"; then
     exit 1
 fi
 
+if rm -f "$ASSETS/Formatted.*.json"; then
+
+    echo "Existing formatted JSON file have been cleaned up from '$ASSETS'"
+fi
+
 if ! test -e "$SCRIPT_RUN"; then
 
     echo "ERROR: Script not found '$SCRIPT_RUN'"
