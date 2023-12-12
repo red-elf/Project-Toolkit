@@ -13,6 +13,7 @@ if test -e "$GENERATED"; then
 fi
 
 # TODO: Generate the Go code:
+#
 #   - Check if there are SQls at expected location
 #   - If so perform code generating to expected destination
 #   - Determine the type of required code for the project to generate

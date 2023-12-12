@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: Obtain and configure the SonarQube installation for bringing it up
+#
+
 echo "SonarQube installation recipe is not defined for the Project Toolkit"
 exit 1
 
