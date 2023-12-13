@@ -55,4 +55,4 @@ else
   echo "Using the default project IDE cmd: $IDE"
 fi
 
-sh "$SCRIPT_OPEN" "$IDE" "$PROJECT"
+bash "$SCRIPT_OPEN" "$IDE" "$PROJECT"

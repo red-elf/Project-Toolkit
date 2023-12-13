@@ -46,7 +46,7 @@ fi
 
 if test -e "$SCRIPT_PUSH_ALL"; then
 
-  if ! sh "$SCRIPT_PUSH_ALL" "$DIR_UPSTREAMS" "$HOOK_SCRIPT"; then
+  if ! bash "$SCRIPT_PUSH_ALL" "$DIR_UPSTREAMS" "$HOOK_SCRIPT"; then
 
     echo "ERROR: Push all failure"
     exit 1  

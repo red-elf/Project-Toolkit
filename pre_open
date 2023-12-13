@@ -6,7 +6,7 @@ SCRIPT_INSTALL_FONTS="$HERE/Run/Install/fonts.sh"
 
 if test -e "$SCRIPT_INSTALL_FONTS"; then
 
-  if ! sh "$SCRIPT_INSTALL_FONTS"  >/dev/null 2>&1; then
+  if ! bash "$SCRIPT_INSTALL_FONTS"  >/dev/null 2>&1; then
   
     echo "ERROR: Failed to install fonts"
     exit 1

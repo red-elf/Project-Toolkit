@@ -8,7 +8,7 @@ SCRIPT_POST_OPEN="$HERE/post_open"
 
 if test -e "$SCRIPT_PRE_OPEN"; then
 
-    if ! sh "$SCRIPT_PRE_OPEN"; then
+    if ! bash "$SCRIPT_PRE_OPEN"; then
 
         echo "ERROR: Pre-open failed"
         exit 1
@@ -24,7 +24,7 @@ fi
 
 if test -e "$SCRIPT_POST_OPEN"; then
 
-    if ! sh "$SCRIPT_POST_OPEN"; then
+    if ! bash "$SCRIPT_POST_OPEN"; then
 
         echo "ERROR: Post-open failed"
         exit 1

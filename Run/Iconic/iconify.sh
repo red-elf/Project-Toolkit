@@ -21,5 +21,5 @@ if [ -n "$1" ]; then
   PARAMS="$1"
 fi
 
-sh "$SCRIPT_ICONIFY" "$PARAMS"
+bash "$SCRIPT_ICONIFY" "$PARAMS"
 

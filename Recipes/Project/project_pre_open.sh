@@ -16,7 +16,7 @@ EXECUTE_RECIPE() {
 
     if test -e "$SCRIPT"; then
 
-        if sh "$SCRIPT" >/dev/null 2>&1; then
+        if bash "$SCRIPT" >/dev/null 2>&1; then
 
             echo "Recipe executed with success: '$SCRIPT'"
 

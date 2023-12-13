@@ -23,4 +23,4 @@ if ! cd "$HERE" && test -e "$SCRIPT_RUN"; then
     exit 1
 fi
 
-sh "$SCRIPT_RUN" "$ASSETS"
+bash "$SCRIPT_RUN" "$ASSETS"

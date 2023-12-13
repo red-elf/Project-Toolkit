@@ -39,7 +39,7 @@ if git clone "$REPO" "$DESTINATION"; then
 
             if test -e "$SCRIPT_INSTALL"; then
 
-                if sh "$SCRIPT_INSTALL" && cd "$SUBMODULES_HOME"; then
+                if bash "$SCRIPT_INSTALL" && cd "$SUBMODULES_HOME"; then
 
                     echo "Project is ready at: $(pwd)"
                 fi

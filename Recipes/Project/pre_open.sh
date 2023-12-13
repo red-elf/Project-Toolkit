@@ -10,4 +10,4 @@ if ! test -e "$SCRIPT"; then
     exit 1
 fi
 
-sh "$SCRIPT"
+bash "$SCRIPT"

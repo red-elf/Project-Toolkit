@@ -32,7 +32,7 @@ if file "$SOURCE" | grep "directory"; then
 
     for FILE_JSON in "$SOURCE"/*.json; do
 
-        sh "$SCRIPT_FORMAT_JSON" "$FILE_JSON"
+        bash "$SCRIPT_FORMAT_JSON" "$FILE_JSON"
 
     done
 

@@ -54,5 +54,5 @@ fi
 
 echo "Installing Project Toolkit"
 
-sh "$SCRIPT_INSTALL"
+bash "$SCRIPT_INSTALL"
 

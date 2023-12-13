@@ -14,7 +14,7 @@ SCRIPT_POST_PREPARE="$HERE/post_prepare"
 
 if test -e "$SCRIPT_PRE_PREPARE"; then
 
-    if ! sh "$SCRIPT_PRE_PREPARE"; then
+    if ! bash "$SCRIPT_PRE_PREPARE"; then
 
         echo "ERROR: Pre-preapre failed"
         exit 1
@@ -51,12 +51,12 @@ fi
 
 LAUNCHER_ASSET="$HERE/Assets/Launcher.png"
 
-sh "$ICONIFY"
+bash "$ICONIFY"
 
 if [ -n "$BRAND_IDE" ]; then
 
     echo "We are going to brand the IDE" && \
-        sh "$DO_BRANDING" "$LAUNCHER_ASSET"
+        bash "$DO_BRANDING" "$LAUNCHER_ASSET"
 
 else
 
@@ -65,11 +65,11 @@ fi
 
 if test -e "$SCRIPT_POST_PREPARE"; then
 
-    if ! sh "$SCRIPT_POST_PREPARE"; then
+    if ! bash "$SCRIPT_POST_PREPARE"; then
 
         echo "ERROR: Post-preapre failed"
         exit 1
     fi
 fi
 
-sh "$SCRIPT"
+bash "$SCRIPT"

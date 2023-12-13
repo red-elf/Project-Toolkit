@@ -25,7 +25,7 @@ RUN_TEST() {
         exit 1
     fi
 
-    sh "$SCRIPT_TEST"
+    bash "$SCRIPT_TEST"
 }
 
 if cd "$DIR_TEST_RUN_CONFIGURATIONS"; then

@@ -22,4 +22,4 @@ fi
 . "$SCRIPT_GET_SONAR_NAME_FULL"
 
 # shellcheck disable=SC1091
-sh "$SUBMODULES_HOME/Testable/test.sh" "$RECIPES" "$HERE"
+bash "$SUBMODULES_HOME/Testable/test.sh" "$RECIPES" "$HERE"

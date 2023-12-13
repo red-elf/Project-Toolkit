@@ -18,7 +18,7 @@ if ! test -e "$SCRIPT_PUBLISH"; then
   exit 1
 fi
 
-if sh "$SCRIPT_PUBLISH" "$1"; then
+if bash "$SCRIPT_PUBLISH" "$1"; then
 
   if [ -n "$TELEGRAM_BOT" ] && [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
 
@@ -34,7 +34,7 @@ if sh "$SCRIPT_PUBLISH" "$1"; then
         exit 1
     fi
 
-    if sh "$SCRIPT_GET_JQ" >/dev/null 2>&1; then
+    if bash "$SCRIPT_GET_JQ" >/dev/null 2>&1; then
 
         MESSAGE="The new version of the VSCode Data has been published"
 
@@ -53,7 +53,7 @@ if sh "$SCRIPT_PUBLISH" "$1"; then
 
         ENCODED_MESSAGE=$(jq -rn --arg x "$MESSAGE" '$x|@uri')
 
-        sh "$BOT_SCRIPT" "$TELEGRAM_BOT" "$TELEGRAM_BOT_TOKEN" "$TELEGRAM_CHAT_ID" "$ENCODED_MESSAGE"
+        bash "$BOT_SCRIPT" "$TELEGRAM_BOT" "$TELEGRAM_BOT_TOKEN" "$TELEGRAM_CHAT_ID" "$ENCODED_MESSAGE"
 
     else
 

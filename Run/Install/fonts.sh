@@ -16,7 +16,7 @@ if ! test -e "$SCRIPT_INSTALL_FONTS"; then
   exit 1
 fi
 
-sh "$SCRIPT_INSTALL_FONTS"
+bash "$SCRIPT_INSTALL_FONTS"
 
 DIR_HOME=$(eval echo ~"$USER")
 DIR_SYS_FONTS=/usr/local/share/fonts
@@ -24,11 +24,11 @@ DIR_DESTINATION="$DIR_HOME/.local/share/fonts"
 
 if test -e "$DIR_SYS_FONTS"; then
 
-  sh "$SCRIPT_INSTALL_FONTS" "$HERE/Assets/Fonts" "$DIR_SYS_FONTS"
+  bash "$SCRIPT_INSTALL_FONTS" "$HERE/Assets/Fonts" "$DIR_SYS_FONTS"
 fi
 
 if test -e "$DIR_DESTINATION"; then
 
-  sh "$SCRIPT_INSTALL_FONTS" "$HERE/Assets/Fonts" "$DIR_DESTINATION"
+  bash "$SCRIPT_INSTALL_FONTS" "$HERE/Assets/Fonts" "$DIR_DESTINATION"
 fi
 
