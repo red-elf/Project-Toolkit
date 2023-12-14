@@ -51,3 +51,7 @@ or via one of the mirror repositories:
 ```
 
 *Note:* It is required to execute the script from empty directory where you whish to clone the Project Toolkit utility.
+
+## Development documentation
+
+Documentation can be found [here](Documentation).
