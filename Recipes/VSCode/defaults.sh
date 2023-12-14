@@ -2,5 +2,5 @@
 
 if [ -z "$DEFAULT_DATA_VERSION" ]; then
 
-    DEFAULT_DATA_VERSION="1.1.1"
+    DEFAULT_DATA_VERSION="1.1.2"
 fi
