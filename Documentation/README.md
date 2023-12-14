@@ -18,8 +18,16 @@
 ## TODO
 
 - `sh run nameOfConfiguration` instead of `sh Run/Some/Path/script.sh`
-- Project Toolkit includes mechanis:
+- The Project Toolkit includes mechanism:
 
 ```shell
 IMPORT "Utils/VSCode/Something" # Where Something corresponds to `Soemthing` or `Soemthing.sh`
 ```
+
+```shell
+USE "Utils/VSCode/Something" # Where Something corresponds to `Soemthing` or `Soemthing.sh`
+```
+
+Where `IMPORT` will just include the script (reference its path), and `USE` will do the same and `source` it.
+
+- The `IMPORT` and `USE` will be exported and avaialbe through the Project Toolkit installation procedure.
