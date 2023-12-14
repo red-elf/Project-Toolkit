@@ -8,6 +8,9 @@ cat << EOF
   "redhat.telemetry.enabled": false,
   "go.toolsManagement.autoUpdate": true,
   "cmake.useCMakePresets": "never",
-  "cmake.showOptionsMovedNotification": false
+  "cmake.showOptionsMovedNotification": false,
+  "codeium.enableSearch": true,
+  "codeium.searchMaxWorkspaceFileCount": 25000,
+  "codeium.useSecretStorage": false
 }
 EOF
