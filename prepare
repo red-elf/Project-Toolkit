@@ -8,6 +8,24 @@ if [ -z "$SUBMODULES_HOME" ]; then
   exit 1
 fi
 
+SCRIPT_LOAD_ENV="$SUBMODULES_HOME/Software-Toolkit/Utils/Sys/environment.sh"
+
+if ! test -e "$SCRIPT_LOAD_ENV"; then
+
+    echo "ERROR: Script not found '$SCRIPT_LOAD_ENV'"
+    exit 1
+fi
+
+# shellcheck disable=SC1090
+if ! source "$SCRIPT_LOAD_ENV"; then
+
+    if ! . "$SCRIPT_LOAD_ENV"; then
+
+        echo "ERROR: Could not load '$SCRIPT_LOAD_ENV'"
+        exit 1
+    fi
+fi
+
 SCRIPT_PREPARE="$SUBMODULES_HOME/Project/prepare.sh"
 
 if ! test  -e "$SCRIPT_PREPARE"; then
