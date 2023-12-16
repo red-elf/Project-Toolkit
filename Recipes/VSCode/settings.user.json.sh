@@ -11,6 +11,9 @@ cat << EOF
   "cmake.showOptionsMovedNotification": false,
   "codeium.enableSearch": true,
   "codeium.searchMaxWorkspaceFileCount": 25000,
-  "codeium.useSecretStorage": true
+  "codeium.useSecretStorage": true,
+  "codeium.enableConfig": {
+    "*": false
+  }
 }
 EOF
