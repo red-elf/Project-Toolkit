@@ -73,13 +73,13 @@ export PATH=$PATH:$SUBMODULES_HOME/Installable
 
 Which will expose the access to the following commands (and many others as well which will be documented at some point):
 
-- `install_upstreams.sh`, execute from the directory which contains the Upstreams directory and install Upstreams
+- `install_upstreams.sh` Execute from the directory which contains the Upstreams directory and install Upstreams
 
 *Note:* Find the details on setting up the Upstreams [here](https://github.com/red-elf/Upstreamable)
 
-- `pull_all.sh`, no arguments needed, pulls the code from all Upstreams
-- `push_all.sh`, push to all remote upstreams
-- `commit`, with our without commit message, commits and pushes to all remote upstreams
+- `pull_all.sh` No arguments needed, pulls the code from all Upstreams
+- `push_all.sh` Push to all remote upstreams
+- `commit`      With our without commit message, commits and pushes to all remote upstreams
 
 *Note:* You can export the paths for the other Project Toolkit modules as well to access their features on the system level!
 
