@@ -8,5 +8,12 @@ fi
 
 WHAT="$(pwd)"
 
-cd .. && echo "Recreating: '$WHAT'" && \
-    rm -rf "$WHAT" && mkdir -p "$WHAT" && cd "$WHAT" && pwd
+SCRIPT_RECREATE="$SUBMODULES_HOME/recreate_dir.sh"
+
+if ! test -e "$SCRIPT_RECREATE"; then
+
+  echo "ERROR: Script not found '$SCRIPT_RECREATE'"
+  exit 1
+fi
+
+cd .. && pwd && bash "$SCRIPT_RECREATE" "$WHAT"

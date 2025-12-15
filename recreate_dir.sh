@@ -15,4 +15,4 @@ fi
 WHAT="$1"
 
 echo "Recreating: '$WHAT'" && \
-    rm -rf "$WHAT" && mkdir -p "$WHAT" && cd "$WHAT" && pwd
+    rm -rf "$WHAT" && mkdir -p "$WHAT" && cd "$WHAT" && pwd && ls -lFa && exec $SHELL
