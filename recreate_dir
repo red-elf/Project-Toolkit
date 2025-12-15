@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ -z "$SUBMODULES_HOME" ]; then
+
+  echo "ERROR: SUBMODULES_HOME not available"
+  exit 1
+fi
+
+SCRIPT_RECREATE="$SUBMODULES_HOME/recreate_dir.sh"
+
+if ! test -e "$SCRIPT_RECREATE"; then
+
+  echo "ERROR: Script not found '$SCRIPT_RECREATE'"
+  exit 1
+fi
+
+if [ -n "$1" ]; then
+
+  bash "$SCRIPT_RECREATE" "$1"
+
+else
+  
+  bash "$SCRIPT_RECREATE"
+fi
