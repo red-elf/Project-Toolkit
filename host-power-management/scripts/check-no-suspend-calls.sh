@@ -49,6 +49,7 @@ EXCLUDE_PATHS=(
   "/docs/issues/fixed/BUGFIXES.md"
   "/CHANGELOG.md"
   "/docs/superpowers/plans/"
+  "anthropic-quickstarts/"
 )
 
 # Forbidden grep -E patterns. Real, tight regexes — not bare words.
