@@ -71,6 +71,25 @@ EXCLUDE_PATHS=(
 )
 
 # Forbidden grep -E patterns. Real, tight regexes — not bare words.
+#
+# Categories:
+#   1. systemctl / loginctl / pm-* / shutdown power-state transitions
+#   2. DBus calls into login1.Manager / UPower for the same
+#   3. gsettings sleep-inactive-{ac,battery}-type set to anything
+#      other than 'nothing' / 'blank'
+#   4. User-session termination — logout, kill-user, kill-session,
+#      systemctl --user exit, systemctl stop user@, login1.Manager
+#      .TerminateUser / KillUser / TerminateSession / KillSession.
+#      The host runs persistent CLI agents and container workloads
+#      under a regular user account; killing that user terminates
+#      everything the same way auto-suspend does.
+#   5. Desktop-session quit (gnome-session-quit, xfce4-session-logout,
+#      qdbus to KDE ksmserver logout) — same outcome as 4.
+#   6. systemctl isolate <emergency|rescue|reboot.target|...> — yanks
+#      the user-session targets out from under us.
+#   7. xset DPMS force off/standby/suspend — note `xset s off` and
+#      `xset -dpms` are NOT forbidden (they DISABLE the screensaver /
+#      DPMS, which is the protective behaviour we ship).
 FORBIDDEN=(
   '\bsystemctl[[:space:]]+(suspend|hibernate|hybrid-sleep|suspend-then-hibernate|poweroff|halt|reboot|kexec)\b'
   '\bloginctl[[:space:]]+(suspend|hibernate|hybrid-sleep|suspend-then-hibernate|poweroff|halt|reboot)\b'
@@ -81,6 +100,21 @@ FORBIDDEN=(
   '(sleep-inactive-(ac|battery)-type)[[:space:]]+["'\'']?(suspend|hibernate|shutdown|hybrid-sleep|interactive)["'\'']?'
   '\bdbus-send\b.*\b(Suspend|Hibernate|PowerOff|Reboot|HybridSleep)\b'
   '\bbusctl\b.*\bcall\b.*\b(Suspend|Hibernate|PowerOff|Reboot|HybridSleep)\b'
+  # Session termination
+  '\bloginctl[[:space:]]+(terminate-(user|session|seat)|kill-(user|session)|logout)\b'
+  '\bsystemctl[[:space:]]+(--user[[:space:]]+exit|stop[[:space:]]+user@|kill[[:space:]]+user@)\b'
+  '\bsystemctl[[:space:]]+isolate[[:space:]]+(emergency|rescue|reboot|poweroff|halt|shutdown)(\.target)?\b'
+  'org\.freedesktop\.login1\.Manager\.(TerminateUser|KillUser|TerminateSession|KillSession|TerminateSeat)'
+  '\bdbus-send\b.*\b(TerminateUser|KillUser|TerminateSession|KillSession|TerminateSeat|Logout)\b'
+  '\bbusctl\b.*\bcall\b.*\b(TerminateUser|KillUser|TerminateSession|KillSession|TerminateSeat)\b'
+  # Desktop session quit
+  '\bgnome-session-quit[[:space:]]+(--logout|--reboot|--power-off|--no-prompt|--force)\b'
+  '\bxfce4-session-logout\b'
+  '\bqdbus[[:space:]]+org\.kde\.ksmserver[[:space:]]+/KSMServer[[:space:]]+(logout|org\.kde\.KSMServerInterface\.logout)\b'
+  # Force-off display (NOT `xset s off` / `xset -dpms` which DISABLE blanking)
+  '\bxset[[:space:]]+dpms[[:space:]]+force[[:space:]]+(off|standby|suspend)\b'
+  '\bsetterm[[:space:]]+--blank[[:space:]]+force\b'
+  '\bvbetool[[:space:]]+dpms[[:space:]]+off\b'
 )
 
 # Build grep arguments
