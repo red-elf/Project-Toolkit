@@ -39,33 +39,55 @@ DEFAULT_BRANCH=$(detect_default_branch)
 echo "  [git] default branch: $DEFAULT_BRANCH"
 
 if [[ "$MODE" == "--push" ]]; then
+  PUSH_OK=0; PUSH_FAIL=0; FAIL_LIST=""
   for r in $(git remote); do
     echo "  [git] push -> $r/$DEFAULT_BRANCH"
-    if ! git push "$r" "HEAD:refs/heads/$DEFAULT_BRANCH"; then
-      echo "  [git] push to $r FAILED"
-      exit 1
+    if git push "$r" "HEAD:refs/heads/$DEFAULT_BRANCH"; then
+      PUSH_OK=$((PUSH_OK + 1))
+    else
+      PUSH_FAIL=$((PUSH_FAIL + 1))
+      FAIL_LIST="$FAIL_LIST $r"
+      echo "  [git] push to $r FAILED (continuing with other remotes)"
     fi
   done
-  exit 0
+  echo "  [git] push summary: $PUSH_OK OK, $PUSH_FAIL FAILED ($FAIL_LIST)"
+  # Exit 0 if at least one push succeeded; non-zero only if ALL remotes failed.
+  [[ $PUSH_OK -gt 0 ]] && exit 0 || exit 1
 fi
 
 # --- sync mode ---
 
-# 1. stash if dirty
+# 1. stash if dirty (count stash entries before/after to detect actual stash creation;
+#    submodule "M" status from interior dirty trees is reported by `git status` but
+#    is NOT stashable, so the count check guards against the empty-stash trap)
 DIRTY=$(git status --porcelain | head -n1)
 STASHED=0
 if [[ -n "$DIRTY" ]]; then
-  if git stash push -u -m "host-power-management-rollout $(date -Iseconds)"; then
+  STASH_BEFORE=$(git stash list 2>/dev/null | wc -l)
+  git stash push -u -m "host-power-management-rollout $(date -Iseconds)" >/dev/null 2>&1 || true
+  STASH_AFTER=$(git stash list 2>/dev/null | wc -l)
+  if [[ "$STASH_AFTER" -gt "$STASH_BEFORE" ]]; then
     STASHED=1
-    echo "  [git] stashed local changes"
+    echo "  [git] stashed local changes (entries: $STASH_BEFORE -> $STASH_AFTER)"
   else
-    echo "  [git] stash FAILED" >&2
-    exit 1
+    echo "  [git] no stashable changes (only submodule interior modifications, not stashable)"
   fi
 fi
 
-# 2. fetch all
-git fetch --all --prune
+# 2. fetch each remote individually, tolerating per-remote failures
+#    (some remotes may be down, auth-broken, or pointing at non-existent
+#    repos; those are noted but don't abort the sync — we only care
+#    that AT LEAST ONE remote is reachable for a meaningful merge).
+FETCH_OK=0; FETCH_FAIL=0
+for r in $(git remote); do
+  if git fetch --prune "$r" 2>&1 | tail -3; then
+    FETCH_OK=$((FETCH_OK + 1))
+  else
+    FETCH_FAIL=$((FETCH_FAIL + 1))
+    echo "  [git] fetch warning: $r unreachable (continuing)"
+  fi
+done
+echo "  [git] fetch summary: $FETCH_OK OK, $FETCH_FAIL FAILED (continuing with reachable remotes)"
 
 # 3 & 4. merge from each remote
 git checkout "$DEFAULT_BRANCH" 2>/dev/null || true
