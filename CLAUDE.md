@@ -11,9 +11,85 @@ working with code in this repository.
 
 ## Project at a glance
 
-See README.md.
+Project-Toolkit is a meta-repository: a set of bash-based modules
+(each a git submodule of `red-elf/<Module>` or
+`Server-Factory/Docker-Definitions`) that together provide project
+bootstrap, versioning, install/dependency recipes, multi-upstream git
+support, testing, and desktop integration. The top-level scripts are
+thin wrappers over the modules.
 
-See `README.md` for the long-form overview.
+**Top-level modules** (each is a git submodule, see `.gitmodules`):
+
+| Module | Purpose |
+|---|---|
+| `Software-Toolkit/` | Core utilities (curl, download, version helpers, templates) |
+| `Versionable/` | Central version parameters (`version.sh`) |
+| `Installable/` | Installation recipes |
+| `Dependable/` | Dependency resolution and install |
+| `Upstreamable/` | Multi-upstream git (push/pull to several remotes at once) |
+| `Testable/` | Test runner / config |
+| `Project/` | Project lifecycle (open, prepare, recipes) |
+| `Iconic/` | Desktop icon launching |
+| `Docker-Definitions/` | Docker images used by the toolkit |
+
+`Upstreams/` declares the canonical multi-remote set (one
+`<Name>.sh` per remote); `install_upstreams.sh` from `Upstreamable/`
+materialises them as git remotes plus an `origin` push fanout.
+
+See `README.md` for end-user installation and the long-form overview.
+
+## Common commands
+
+Top-level wrappers (run from repo root):
+
+- `./prepare` — pre-development setup
+- `./open` — open the project (runs `pre_open` first, then `do_open`)
+- `./test` — run all test configurations under `Run/Test/`
+- `./pull_all` — pull from every configured remote
+- `./push_all` — push to every configured remote
+- `./sync` — convenience wrapper for fetch + integrate
+- `./commit [message]` — stage, commit (Conventional Commits), and push to all upstreams
+- `./install.sh` — install the toolkit into `$SUBMODULES_HOME`
+- `./recreate_dir` / `./recreate_current_dir` — utility scripts
+
+Once the toolkit is on `PATH` (see "Required environment" below),
+`install_upstreams.sh`, `pull_all.sh`, `push_all.sh`, and `commit` are
+available system-wide and operate on the current working directory.
+
+## Required environment
+
+Many wrappers expect:
+
+```bash
+export SUBMODULES_HOME=/path/to/this/checkout
+export PATH=$PATH:$SUBMODULES_HOME
+export PATH=$PATH:$SUBMODULES_HOME/Upstreamable
+export PATH=$PATH:$SUBMODULES_HOME/Installable
+```
+
+If a wrapper errors with an undefined-variable message, verify
+`SUBMODULES_HOME` is set in the current shell.
+
+## Challenges (DoD verification)
+
+Authoritative verification scripts live in `challenges/scripts/`.
+Currently shipped:
+
+- `no_suspend_calls_challenge.sh` — static scan: source tree must be
+  free of forbidden host-power-management invocations (CONST-033).
+- `host_no_auto_suspend_challenge.sh` — runtime assertion: the host's
+  sleep/hibernate targets are masked and logind is configured per
+  CONST-033.
+
+CLAUDE.md references `run_all_challenges.sh` as the aggregate runner;
+if it is not present, run each challenge directly. Either way, **both
+challenges MUST PASS** before claiming any host-power-management or
+related work is complete.
+
+Companion artifacts (installer + scanner + per-user defensive
+bootstrap) live under `scripts/host-power-management/` and
+`host-power-management/`. Do not extend the scanner's allowlist
+without an explicit non-host-context justification comment (CONST-033).
 
 ## Hard stops (non-negotiable)
 
