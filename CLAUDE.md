@@ -3,6 +3,16 @@
 This file provides guidance to Claude Code (claude.ai/code) when
 working with code in this repository.
 
+## INHERITED FROM constitution/CLAUDE.md
+
+All rules in `constitution/CLAUDE.md` (and the
+`constitution/Constitution.md` it references) apply unconditionally.
+Project-specific rules below extend them — they do NOT weaken any
+universal clause. When this file disagrees with the constitution
+submodule, the constitution wins (per §11.4.35).
+
+@constitution/CLAUDE.md
+
 ## Read first
 
 1. `CONSTITUTION.md` — numbered, non-negotiable rules (`CONST-NNN`).

@@ -25,3 +25,6 @@
 [submodule "Docker-Definitions"]
 	path = Docker-Definitions
 	url = git@github.com:Server-Factory/Docker-Definitions.git
+[submodule "constitution"]
+	path = constitution
+	url = git@github.com:HelixDevelopment/HelixConstitution.git

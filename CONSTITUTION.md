@@ -4,6 +4,15 @@
 > rule set. When a rule here conflicts with `CLAUDE.md`, `AGENTS.md`,
 > or any guide, the Constitution wins.
 
+## Inheritance
+
+This constitution **extends** the Helix Universal Constitution at
+`constitution/Constitution.md`. All clauses there apply unless
+explicitly overridden below with an explicit `Override §X.Y`
+section. Project-specific clauses below (e.g. `CONST-033` host
+power management) extend — they do NOT weaken — any universal
+clause (per §11.4.35).
+
 ## Mission
 
 See README.md.

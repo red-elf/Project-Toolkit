@@ -49,6 +49,16 @@ EXCLUDE_PATHS=(
   "/docs/issues/fixed/BUGFIXES.md"
   "/CHANGELOG.md"
   "/docs/superpowers/plans/"
+  # Non-host context (CONST-033 documentation in the Helix Constitution
+  # submodule): the constitution is externally-maintained governance
+  # documentation that describes — but does not invoke — the forbidden
+  # patterns (§12 Host-Session Safety). The submodule has no shell
+  # entry points that execute on this host; its scripts
+  # (install_upstreams.sh / find_constitution.sh) are git-config
+  # helpers only. If executable code is ever added to constitution/
+  # that invokes a host power-state transition, this allowlist entry
+  # must be narrowed at that time.
+  "/constitution/"
 )
 
 # Forbidden grep -E patterns. Real, tight regexes — not bare words.

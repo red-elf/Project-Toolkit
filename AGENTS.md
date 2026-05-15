@@ -1,5 +1,13 @@
 # Agent Instructions for Project Toolkit
 
+> **Base agent rules:** `constitution/AGENTS.md` — READ IT FIRST.
+> The base file is authoritative for any topic not covered here.
+> The project-specific rules in this file extend the base; they
+> never weaken it. When this file disagrees with the constitution
+> submodule, the constitution wins (per §11.4.35).
+>
+> Canonical reference: https://github.com/HelixDevelopment/HelixConstitution
+
 ## Project Overview
 Project Toolkit is a modular development toolkit providing utilities for project management, versioning, installation, dependency management, and multi-upstream Git support.
 
