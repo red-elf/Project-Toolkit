@@ -10,7 +10,14 @@ fi
 
 SCRIPT_PUSH_ALL="$SUBMODULES_HOME/Upstreamable/push_all.sh"
 
-DIR_UPSTREAMS="Upstreams"
+# Helix Constitution §11.4.29: prefer lowercase 'upstreams/' over legacy
+# 'Upstreams/' as the canonical recipes-container name. Both are valid;
+# lowercase wins when both exist in the current working directory.
+if test -e "upstreams"; then
+    DIR_UPSTREAMS="upstreams"
+else
+    DIR_UPSTREAMS="Upstreams"
+fi
 
 if [ -n "$1" ]; then
 
